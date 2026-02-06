@@ -1,0 +1,421 @@
+/* style.css */
+:root {
+  --bg: #fff7f0;
+  --card: #ffffff;
+  --accent: #ffcc99;
+  --border: #f1d4b6;
+  --text: #2b2b2b;
+  --muted: #777;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  gap: 24px;
+  padding: 24px;
+}
+.sidebar,
+.rightbar {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.greeting h1 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+.greeting span {
+  font-weight: 700;
+}
+.greeting p {
+  color: var(--muted);
+  font-size: 14px;
+}
+#currentDate{
+    margin-bottom: 25px;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+.btn {
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.primary {
+  background: var(--accent);
+  border: none;
+}
+.outline {
+  background: transparent;
+  border: 1px solid var(--border);
+}
+.habits ul {
+  list-style: none;
+  margin-top: 12px;
+}
+.habits li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.habits span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.progress .stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 12px;
+  text-align: center;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.composer input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.post {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.post header {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.post img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+.rightbar section {
+  margin-bottom: 24px;
+}
+.list-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.list-card span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+.achievements {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+.badge {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+.challenge-section{
+    margin-bottom: 20px;
+}
+.challenge-input{
+    margin-top: 10px;
+}
+.challenges {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.challenge {
+  border-radius: 12px;
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.analytics {
+  display: grid;
+  gap: 10px;
+}
+.analytics-card {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 14px;
+  font-size: 14px;
+}
+@media (max-width: 1024px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+}
+.motivation {
+  background: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+#noHabit {
+  text-align: center;
+}
+.habit-input {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.habit-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #f1d4b6;
+  font-size: 14px;
+}
+.habit-input button {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #ffcc99;
+  font-weight: 600;
+  cursor: pointer;
+}
+.habit-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+.habit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.habit-header h4 {
+  font-size: 15px;
+}
+.habit-header button {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  font-weight: 600;
+  cursor: pointer;
+}
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+.week label {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.challenge-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.challenge-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.challenge-input button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .sidebar,
+  .rightbar {
+    order: 2;
+  }
+  .main {
+    order: 1;
+  }
+}
+.sidebar {
+  overflow: hidden;
+}
+.challenge-section {
+  width: 100%;
+}
+.challenge-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.challenge-input input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+.challenge-input button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+.challenges {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.challenge-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+}
+.challenge-item button {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* REMOVE BUTTON (existing habit-header button) */
+.habit-header button {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.habit-header button:hover {
+  background: #ffb877;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.habit-header button:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   SCROLLABLE HABIT LIST
+===================== */
+.habit-list {
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* scrollbar (modern look) */
+.habit-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.habit-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 6px;
+}
+
+.habit-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =====================
+   PERFORMANCE SECTION
+===================== */
+.performance-section {
+  margin-top: 32px;
+}
+
+.performance-section h3 {
+  margin-bottom: 14px;
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.performance-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

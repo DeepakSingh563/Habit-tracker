@@ -1,0 +1,131 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <header class="greeting">
+                <h1>Hello 👋<br><span>Good Day!</span></h1>
+                <p id="currentDate"></p>
+            </header>
+
+
+            <section class="challenge-section">
+                <h3>Upcoming Challenges</h3>
+
+                <div class="challenge-input">
+                    <input id="challengeInput" type="text" placeholder="Add challenge..." />
+                    <button id="addChallengeBtn">+</button>
+                </div>
+
+                <div class="challenges" id="challengeList"></div>
+            </section>
+
+
+
+            <section class="progress">
+                <h3>Progress overall</h3>
+
+                <div class="stat">
+                    <strong id="perfectDays">0</strong>
+                    <p>Perfect Days</p>
+                </div>
+
+                <div class="stat">
+                    <strong id="currentStreak">0</strong>
+                    <p>Current Streak</p>
+                </div>
+            </section>
+
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- Motivational Thought -->
+            <div class="motivation" id="motivation">
+                “Small habits make big changes.”
+            </div>
+
+            <!-- Add Habit -->
+            <div class="habit-input">
+                <input id="habitName" type="text" placeholder="Add your habit..." />
+                <button id="addHabitBtn">Add Habit</button>
+            </div>
+
+            <!-- Habit List -->
+            <div class="habit-list" id="habitList">
+                <h3 id="noHabit">No Habit Exist</h3>
+            </div>
+
+            <!-- Performance Analytics -->
+            <section class="performance-section">
+                <h3>Performance Overview</h3>
+
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+
+                    <div class="performance-card">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="rightbar">
+            <section>
+                <h3>My Tribes</h3>
+                <div class="list-card">💪 Goo jimming! </div>
+                <div class="list-card">🔔 Wake up and meditate </div>
+                <div class="list-card">💪 Goo Running! </div>
+            </section>
+
+
+
+
+            <section>
+                <h3>Habit Analytics</h3>
+                <div class="analytics">
+                    <div class="analytics-card">
+                        🔥 Highest Streak<br>
+                        <strong id="highestStreak">0</strong>
+                    </div>
+
+                    <div class="analytics-card">
+                        ✅ Total Completed<br>
+                        <strong id="totalCompleted">0</strong>
+                    </div>
+
+                    <div class="analytics-card">
+                        ❌ Skipped Days<br>
+                        <strong id="skippedDays">0</strong>
+                    </div>
+                </div>
+            </section>
+
+        </aside>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
