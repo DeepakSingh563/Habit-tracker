@@ -7,17 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Habit Dashboard</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style2.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="app">
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <h2>Welcome 👋</h2>
+            <p>Please enter your details</p>
+
+            <input type="text" id="nameInput" placeholder="Your Name" />
+            <input type="email" id="emailInput" placeholder="Your Email" />
+
+            <button type="button" id="loginBtn">Continue</button>
+
+        </div>
+    </div>
+
+
+
+    <div class="app" id="app">
         <!-- LEFT SIDEBAR -->
         <aside class="sidebar">
+
             <header class="greeting">
-                <h1>Hello 👋<br><span>Good Day!</span></h1>
+                <h1>Hello 👋<br><span id="userName">Good Day!</span></h1>
                 <p id="currentDate"></p>
             </header>
 
@@ -121,11 +138,17 @@
                     </div>
                 </div>
             </section>
+            <button id="rightbarLogoutBtn" class="rightbar-logout-btn" type="button">
+                Logout
+            </button>
+
+
 
         </aside>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 
 </html>

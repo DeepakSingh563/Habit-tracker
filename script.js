@@ -26,6 +26,26 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshCharts();
 });
 
+
+//random thoughts 
+const thoughts = [
+    "Small habits make big changes.",
+    "Discipline beats motivation every time.",
+    "Consistency creates confidence.",
+    "Start where you are. Use what you have.",
+    "Your future self will thank you.",
+    "Progress, not perfection.",
+    "Dreams don’t work unless you do.",
+    "One day or day one. You decide.",
+    "Hard work compounds silently.",
+    "Focus on growth, not comfort."
+];
+
+const motivationEl = document.getElementById("motivation");
+
+const randomIndex = Math.floor(Math.random() * thoughts.length);
+motivationEl.textContent = `“${thoughts[randomIndex]}”`;
+
 // ===============================
 // DATE HELPERS
 // ===============================
@@ -366,87 +386,75 @@ recalcToday();
 updateHabitAnalytics();
 updateUI();
 
+// Store chart instances globally so we can update them later
+let myLineChart;
+let myBarChart;
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Ensure Chart.js is loaded
-  if (typeof Chart === "undefined") {
-    console.error("Chart.js not loaded");
-    return;
-  }
+  if (typeof Chart === "undefined") return;
 
   const lineCanvas = document.getElementById("lineChart");
   const barCanvas = document.getElementById("barChart");
 
-  if (!lineCanvas || !barCanvas) {
-    console.error("Graph canvas not found");
-    return;
-  }
-
-  // ---------- SAMPLE DATA (replace later with real data) ----------
+  // 1. Initialize with ZERO/EMPTY data for new users
   const dailyLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const dailyData = [1, 2, 3, 2, 4, 3, 5];
+  let initialDailyData = [0, 0, 0, 0, 0, 0, 0]; 
 
   const habitLabels = ["Workout", "Reading", "Meditation"];
-  const habitData = [12, 18, 9];
+  let initialHabitData = [0, 0, 0];
 
-  // ---------- LINE GRAPH ----------
-  new Chart(lineCanvas.getContext("2d"), {
+  // LINE GRAPH
+  myLineChart = new Chart(lineCanvas.getContext("2d"), {
     type: "line",
     data: {
       labels: dailyLabels,
-      datasets: [
-        {
-          label: "Habits Completed",
-          data: dailyData,
-          borderColor: "#ffcc99",
-          backgroundColor: "rgba(255, 204, 153, 0.35)",
-          fill: true,
-          tension: 0.4,
-          pointRadius: 4,
-          pointHoverRadius: 6
-        }
-      ]
+      datasets: [{
+        label: "Habits Completed",
+        data: initialDailyData, // Starts at 0
+        borderColor: "#ffcc99",
+        fill: true,
+        tension: 0.4
+      }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: { stepSize: 1 }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
-  // ---------- BAR GRAPH ----------
-  new Chart(barCanvas.getContext("2d"), {
+  // BAR GRAPH
+  myBarChart = new Chart(barCanvas.getContext("2d"), {
     type: "bar",
     data: {
       labels: habitLabels,
-      datasets: [
-        {
-          label: "Total Completions",
-          data: habitData,
-          backgroundColor: "#ffcc99",
-          borderRadius: 8
-        }
-      ]
+      datasets: [{
+        label: "Total Completions",
+        data: initialHabitData, // Starts at 0
+        backgroundColor: "#ffcc99"
+      }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: { stepSize: 1 }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
+
+  // 2. CALL DATA FETCHING (Simulating real-time or local storage)
+  loadUserData();
 });
+
+// Function to update the charts when data changes
+function updatePerformanceCharts(newDataArray, newHabitArray) {
+    // Update Line Chart
+    myLineChart.data.datasets[0].data = newDataArray;
+    myLineChart.update(); // This triggers the animation
+
+    // Update Bar Chart
+    myBarChart.data.datasets[0].data = newHabitArray;
+    myBarChart.update();
+}
+
+// Example: Simulating fetching data from a database or habit tracker
+function loadUserData() {
+    // In a real app, you'd fetch this from localStorage or an API
+    // If it's a new user, this remains [0,0,0...]
+    const realDataFromStorage = [1, 5, 2, 8, 4, 9, 3]; 
+    const realHabitCounts = [10, 15, 5];
+
+    // Update the UI
+    updatePerformanceCharts(realDataFromStorage, realHabitCounts);
+}
