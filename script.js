@@ -386,75 +386,89 @@ recalcToday();
 updateHabitAnalytics();
 updateUI();
 
-// Store chart instances globally so we can update them later
+// ===============================
+// LINE CHART – HABIT PERFORMANCE
+// ===============================
+
 let myLineChart;
-let myBarChart;
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (typeof Chart === "undefined") return;
+  // Safety check: Chart.js loaded or not
+  if (typeof Chart === "undefined") {
+    console.error("Chart.js not loaded");
+    return;
+  }
 
+  // Get canvas
   const lineCanvas = document.getElementById("lineChart");
-  const barCanvas = document.getElementById("barChart");
+  if (!lineCanvas) {
+    console.error("lineChart canvas not found");
+    return;
+  }
 
-  // 1. Initialize with ZERO/EMPTY data for new users
+  // Labels & initial data (new user)
   const dailyLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  let initialDailyData = [0, 0, 0, 0, 0, 0, 0]; 
+  const initialDailyData = [0, 0, 0, 0, 0, 0, 0];
 
-  const habitLabels = ["Workout", "Reading", "Meditation"];
-  let initialHabitData = [0, 0, 0];
-
-  // LINE GRAPH
+  // Create line chart
   myLineChart = new Chart(lineCanvas.getContext("2d"), {
     type: "line",
     data: {
       labels: dailyLabels,
-      datasets: [{
-        label: "Habits Completed",
-        data: initialDailyData, // Starts at 0
-        borderColor: "#ffcc99",
-        fill: true,
-        tension: 0.4
-      }]
+      datasets: [
+        {
+          label: "Habits Completed",
+          data: initialDailyData,
+          borderColor: "#ffcc99",
+          backgroundColor: "rgba(255, 204, 153, 0.3)",
+          fill: true,
+          tension: 0.4,
+          pointRadius: 5,
+          pointHoverRadius: 7
+        }
+      ]
     },
-    options: { responsive: true, maintainAspectRatio: false }
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      }
+    }
   });
 
-  // BAR GRAPH
-  myBarChart = new Chart(barCanvas.getContext("2d"), {
-    type: "bar",
-    data: {
-      labels: habitLabels,
-      datasets: [{
-        label: "Total Completions",
-        data: initialHabitData, // Starts at 0
-        backgroundColor: "#ffcc99"
-      }]
-    },
-    options: { responsive: true, maintainAspectRatio: false }
-  });
-
-  // 2. CALL DATA FETCHING (Simulating real-time or local storage)
+  // Load data after chart creation
   loadUserData();
 });
 
-// Function to update the charts when data changes
-function updatePerformanceCharts(newDataArray, newHabitArray) {
-    // Update Line Chart
-    myLineChart.data.datasets[0].data = newDataArray;
-    myLineChart.update(); // This triggers the animation
+// ===============================
+// UPDATE CHART DATA
+// ===============================
+function updatePerformanceChart(newDataArray) {
+  if (!myLineChart) return;
 
-    // Update Bar Chart
-    myBarChart.data.datasets[0].data = newHabitArray;
-    myBarChart.update();
+  // Prevent data mismatch bugs
+  if (newDataArray.length !== myLineChart.data.labels.length) {
+    console.error("Data length does not match labels length");
+    return;
+  }
+
+  myLineChart.data.datasets[0].data = newDataArray;
+  myLineChart.update();
 }
 
-// Example: Simulating fetching data from a database or habit tracker
+// ===============================
+// LOAD USER DATA (SIMULATION)
+// ===============================
 function loadUserData() {
-    // In a real app, you'd fetch this from localStorage or an API
-    // If it's a new user, this remains [0,0,0...]
-    const realDataFromStorage = [1, 5, 2, 8, 4, 9, 3]; 
-    const realHabitCounts = [10, 15, 5];
+  // Later: fetch from localStorage / backend
+  // Example for new user
+  const realDataFromStorage = [0, 0, 0, 0, 0, 0, 0];
 
-    // Update the UI
-    updatePerformanceCharts(realDataFromStorage, realHabitCounts);
+  updatePerformanceChart(realDataFromStorage);
 }
