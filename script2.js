@@ -45,25 +45,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // ======================
   // LOGIN
   // ======================
-  if (loginBtn) {
-    loginBtn.addEventListener("click", (e) => {
-      e.preventDefault(); // ⛔ prevent page reload
+ if (loginBtn) {
+  loginBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
 
-      if (!name || !email) {
-        alert("Please enter name and email");
-        return;
-      }
+    if (!name || !email) {
+      alert("Please enter name and email");
+      return;
+    }
 
-      localStorage.setItem("userName", name);
-      localStorage.setItem("userEmail", email);
+    if (!email.endsWith("@gmail.com")) {
+      alert("Only Gmail addresses are allowed");
+      return;
+    }
 
-      unlockApp(name);
-    });
-  }
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
 
+    unlockApp(name);
+  });
+}
   // ======================
   // LOGOUT
   // ======================
